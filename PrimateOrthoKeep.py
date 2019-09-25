@@ -24,7 +24,6 @@ CREATING DATABASE WITHT PRIMATE OTHOLOGS
 
 """
 if len(sys.argv) == 2:
-
 else:
     sys.exit("The command line should be the following I am going to explain here")
 """

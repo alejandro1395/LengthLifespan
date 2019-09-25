@@ -39,12 +39,12 @@ def retrieve_length_of_sequence(ID_seq, x):
     ext = "/sequence/id/" + ensembl_id + "?" + ";mask_feature=1"
     r = requests.get(server+ext, headers={ "Content-Type" : "text/plain"})
     while not r.ok:
-        x+=4
+        x+=6
         sleep(x)
         r = requests.get(server+ext, headers={ "Content-Type" : "text/plain"})
     if r.ok:
         print("ok")
-        x=4
+        x=6
         sleep(x)
     sequence = r.text
     list = re.findall('[a-z]+', sequence)

@@ -42,12 +42,12 @@ def retrieve_length_of_cds(ID_seq, x):
     ext1 = "/overlap/id/" + ensembl_id + "?" + ";feature=transcript;"
     r = requests.get(server+ext1, headers={ "Content-Type" : "text/plain"})
     while not r.ok:
-        x+=4
+        x+=6
         sleep(x)
         r = requests.get(server+ext1, headers={ "Content-Type" : "text/plain"})
     if r.ok:
         print("ok")
-        x=4
+        x=6
         sleep(x)
     data = r.text.split("id: ")
     transcripts = [field.split("\n")[0] for field in data if field.startswith("ENST")]
@@ -55,26 +55,30 @@ def retrieve_length_of_cds(ID_seq, x):
         ext2 = "/sequence/id/" + trans + "?"
         t = requests.get(server+ext2, headers={ "Content-Type" : "text/plain"})
         while not r.ok:
-            x+=4
+            x+=6
             sleep(x)
             t = requests.get(server+ext2, headers={ "Content-Type" : "text/plain"})
         if r.ok:
             print("ok")
-            x=4
+            x=6
             sleep(x)
         all_transcripts_lengths[trans] = t.text
-    right_trans = max(all_transcripts_lengths, key=lambda key: len(all_transcripts_lengths[key]))
-    ext3 = "/sequence/id/" + right_trans + "?" + ";type=cds"
-    cds = requests.get(server+ext3, headers={ "Content-Type" : "text/plain"})
-    while not r.ok:
-        x+=4
-        sleep(x)
+    if all_transcripts_lengths:
+        right_trans = max(all_transcripts_lengths, key=lambda key: len(all_transcripts_lengths[key]))
+        ext3 = "/sequence/id/" + right_trans + "?" + ";type=cds"
         cds = requests.get(server+ext3, headers={ "Content-Type" : "text/plain"})
-    if r.ok:
-        print("ok")
-        x=4
-        sleep(x)
-    top_CDS_len = len(cds.text)
+        while not r.ok:
+            x+=6
+            sleep(x)
+            cds = requests.get(server+ext3, headers={ "Content-Type" : "text/plain"})
+        if r.ok:
+            print("ok")
+            x=6
+            sleep(x)
+        top_CDS_len = len(cds.text)
+        print(top_CDS_len)
+    else:
+        top_CDS_len = "NULL"
     return(top_CDS_len)
 
 

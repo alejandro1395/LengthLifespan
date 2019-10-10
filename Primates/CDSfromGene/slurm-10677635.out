@@ -1,0 +1,53 @@
+Traceback (most recent call last):
+  File "/homes/aplic/noarch/software/Python/3.6.6-foss-2018b/lib/python3.6/site-packages/urllib3-1.23-py3.6.egg/urllib3/connection.py", line 171, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw)
+  File "/homes/aplic/noarch/software/Python/3.6.6-foss-2018b/lib/python3.6/site-packages/urllib3-1.23-py3.6.egg/urllib3/util/connection.py", line 79, in create_connection
+    raise err
+  File "/homes/aplic/noarch/software/Python/3.6.6-foss-2018b/lib/python3.6/site-packages/urllib3-1.23-py3.6.egg/urllib3/util/connection.py", line 69, in create_connection
+    sock.connect(sa)
+TimeoutError: [Errno 110] Connection timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/homes/aplic/noarch/software/Python/3.6.6-foss-2018b/lib/python3.6/site-packages/urllib3-1.23-py3.6.egg/urllib3/connectionpool.py", line 600, in urlopen
+    chunked=chunked)
+  File "/homes/aplic/noarch/software/Python/3.6.6-foss-2018b/lib/python3.6/site-packages/urllib3-1.23-py3.6.egg/urllib3/connectionpool.py", line 343, in _make_request
+    self._validate_conn(conn)
+  File "/homes/aplic/noarch/software/Python/3.6.6-foss-2018b/lib/python3.6/site-packages/urllib3-1.23-py3.6.egg/urllib3/connectionpool.py", line 849, in _validate_conn
+    conn.connect()
+  File "/homes/aplic/noarch/software/Python/3.6.6-foss-2018b/lib/python3.6/site-packages/urllib3-1.23-py3.6.egg/urllib3/connection.py", line 314, in connect
+    conn = self._new_conn()
+  File "/homes/aplic/noarch/software/Python/3.6.6-foss-2018b/lib/python3.6/site-packages/urllib3-1.23-py3.6.egg/urllib3/connection.py", line 180, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: <urllib3.connection.VerifiedHTTPSConnection object at 0x2b546d686ac8>: Failed to establish a new connection: [Errno 110] Connection timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/homes/aplic/noarch/software/Python/3.6.6-foss-2018b/lib/python3.6/site-packages/requests-2.19.1-py3.6.egg/requests/adapters.py", line 445, in send
+    timeout=timeout
+  File "/homes/aplic/noarch/software/Python/3.6.6-foss-2018b/lib/python3.6/site-packages/urllib3-1.23-py3.6.egg/urllib3/connectionpool.py", line 638, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "/homes/aplic/noarch/software/Python/3.6.6-foss-2018b/lib/python3.6/site-packages/urllib3-1.23-py3.6.egg/urllib3/util/retry.py", line 398, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='rest.ensembl.org', port=443): Max retries exceeded with url: /overlap/id/ENSCANG00000038563?;feature=transcript; (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x2b546d686ac8>: Failed to establish a new connection: [Errno 110] Connection timed out',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/homes/users/avalenzuela/scratch/PhD_EvoGenomics/1st_year/RegLifespanJuly2019_PhD/LengthGenes_July2019/src/CDSfromGene.py", line 103, in <module>
+    seq_len = retrieve_length_of_cds(value, time)
+  File "/homes/users/avalenzuela/scratch/PhD_EvoGenomics/1st_year/RegLifespanJuly2019_PhD/LengthGenes_July2019/src/CDSfromGene.py", line 43, in retrieve_length_of_cds
+    r = requests.get(server+ext1, headers={ "Content-Type" : "text/plain"})
+  File "/homes/aplic/noarch/software/Python/3.6.6-foss-2018b/lib/python3.6/site-packages/requests-2.19.1-py3.6.egg/requests/api.py", line 72, in get
+    return request('get', url, params=params, **kwargs)
+  File "/homes/aplic/noarch/software/Python/3.6.6-foss-2018b/lib/python3.6/site-packages/requests-2.19.1-py3.6.egg/requests/api.py", line 58, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/homes/aplic/noarch/software/Python/3.6.6-foss-2018b/lib/python3.6/site-packages/requests-2.19.1-py3.6.egg/requests/sessions.py", line 512, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/homes/aplic/noarch/software/Python/3.6.6-foss-2018b/lib/python3.6/site-packages/requests-2.19.1-py3.6.egg/requests/sessions.py", line 622, in send
+    r = adapter.send(request, **kwargs)
+  File "/homes/aplic/noarch/software/Python/3.6.6-foss-2018b/lib/python3.6/site-packages/requests-2.19.1-py3.6.egg/requests/adapters.py", line 513, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='rest.ensembl.org', port=443): Max retries exceeded with url: /overlap/id/ENSCANG00000038563?;feature=transcript; (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x2b546d686ac8>: Failed to establish a new connection: [Errno 110] Connection timed out',))

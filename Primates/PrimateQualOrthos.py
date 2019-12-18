@@ -73,7 +73,6 @@ for filename in os.listdir(PATH1):
                         score = float(qual_parm2)/100
                     else:
                         score = 0
-                    print(score)
                     if str(row[primate2 + " gene stable ID"]) in matching_species_ids:
                         Primate_ortho_lengths.loc[Primate_ortho_lengths['Species Gene ID'] == row[primate2 + " gene stable ID"], 'Species Quality'] = score
 

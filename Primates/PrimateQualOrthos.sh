@@ -7,11 +7,12 @@
 #SBATCH -e slurm.%j.err
 #SBATCH --partition=normal
 #SBATCH --nodes=1
-#SBATCH --time=01:00:00
+#SBATCH --time=03-00:00
 
 #run the application
 #PATHS
 
+module load Python/3.6.6-foss-2018b
 OUTPUT=/homes/users/avalenzuela/scratch/PhD_EvoGenomics/1st_year/RegLifespanJuly2019_PhD/LengthGenes_July2019/results/
 mkdir ${OUTPUT}Primates
 

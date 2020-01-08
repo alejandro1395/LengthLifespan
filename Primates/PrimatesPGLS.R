@@ -39,7 +39,7 @@ species <- c("Chimpanzee", "Gorilla", "Orangutan", "Greater bamboo lemur", "Gold
              "Shooty mangabey")
 
 
-#Select only Primate Species
+#Select only Primate Species and include ADW info
 
 AnAge_primates <- Anagedb[which(Anagedb$Order == "Primates"),]
 SelectedPrimates <- AnAge_primates[which(AnAge_primates$Common.name %in% species),]
